@@ -18,8 +18,6 @@ public class Garage <T> implements Printable <T> {
         return null;
     }
 
-    @Override
-    public void print(T t) {
 
-    }
+
 }

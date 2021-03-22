@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.PipedOutputStream;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,29 +18,29 @@ public class Main {
         Car car4 = new Car();
         car4.setAuto(new Porshe());
 
-        if (car1.getAuto() instanceof Toyota) {
-            Toyota toyota = (Toyota) car1.getAuto();
-            System.out.println("Выбираем Toyota");
-        }
-        if (car2.getAuto() instanceof Porshe) {
-            Porshe porshe = (Porshe) car2.getAuto();
-            System.out.println("Выбираем Porshe");
-        }
-        if (car3.getAuto() instanceof Mersedes) {
-            Mersedes mersedes = (Mersedes) car3.getAuto();
-            System.out.println("Выбираем Mersedes");
-        }
-        if (car4.getAuto() instanceof Crossover){
-            Crossover crossover = (Crossover) car4.getAuto();
-            System.out.println("Выбираем Crossover");
-        }
 
-        Garage<Car> car = new Garage<>();
-        car.setAuto(new Car());
+        Garage<Porshe> porsheGarage = new Garage<>();
+        porsheGarage.setAuto(new Porshe());
+        porsheGarage.print();
+        setIfNull(new Garage<Toyota>(),new Toyota());
+
+        Garage<Crossover> crossoverGarage = new Garage<>();
+        crossoverGarage.setAuto(new Crossover());
+        crossoverGarage.print();
+        setIfNull(new Garage<Porshe>(), new Porshe());
+
+        Garage<Toyota> toyotaGarage = new Garage<>();
+        toyotaGarage.setAuto(new Toyota());
+        toyotaGarage.print();
+        setIfNull(new Garage<Mersedes>(), new Mersedes());
+
+        Garage<Mersedes> mersedesGarage = new Garage<>();
+        mersedesGarage.setAuto(new Mersedes());
+        mersedesGarage.print();
         setIfNull(new Garage<Crossover>(), new Crossover());
     }
-    
-    public static <T > void setIfNull(Garage < T > car, T t){
+
+    public static <T > void setIfNull (Garage < T > car, T t){
             if (car.getAuto() == null) {
                 car.setAuto(t);
                 System.out.println("В гараже есть " + t.getClass().getSimpleName());
